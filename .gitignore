@@ -1,0 +1,32 @@
+# Environment variables and secrets
+.env
+.env*.local
+*.env
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# IDE and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs and scratch data
+*.log
+scratch/
+
+# Local databases and downloaded datasets
+qdrant_db/
+knowledge_base/raw_docs/
+.taste-skill/

@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  devcopilot:
+    build: .
+    container_name: devcopilot-engine
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - TAVILY_API_KEY=${TAVILY_API_KEY}
+      - QDRANT_URL=${QDRANT_URL}
+      - QDRANT_API_KEY=${QDRANT_API_KEY}
+      - FAST_MODEL=qwen/qwen3.8-27b
+      - POWER_MODEL=openai/gpt-oss-120b
+    env_file:
+      - .env
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/status"]
+      interval: 30s
+      timeout: 10s
+      retries: 3

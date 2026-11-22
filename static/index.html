@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevCopilot &mdash; Enterprise Documentation Assistant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body class="workspace-body">
+  <div class="app-layout">
+    <!-- Top Navigation Header -->
+    <header class="top-navbar">
+      <div class="brand-cluster">
+        <div class="brand-mark">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="16 18 22 12 16 6"></polyline>
+            <polyline points="8 6 2 12 8 18"></polyline>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1 class="brand-title">DEVCOPILOT</h1>
+          <span class="brand-subtitle">Enterprise Technical Knowledge Base</span>
+        </div>
+      </div>
+
+      <div class="header-status-group">
+        <div class="status-pill status-qdrant">
+          <span class="status-dot"></span>
+          <span class="pill-label">Qdrant Cloud: 4,202 chunks</span>
+        </div>
+        <div class="status-pill status-model">
+          <span class="pill-badge">FAST</span>
+          <span class="pill-label">qwen3.8-27b</span>
+        </div>
+        <div class="status-pill status-model">
+          <span class="pill-badge pill-power">POWER</span>
+          <span class="pill-label">gpt-oss-120b</span>
+        </div>
+        <button id="toggle-sidebar-btn" class="header-action-btn mobile-only-control" aria-label="Toggle navigation sidebar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Workspace Container -->
+    <div class="workspace-viewport">
+      <!-- Left Sidebar (Desktop 1440px) -->
+      <aside class="sidebar-panel" id="sidebar-panel">
+        <div class="sidebar-scrollable">
+          <!-- Active Docsets Card -->
+          <div class="neo-card sidebar-card">
+            <div class="interrupt-tag">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+              </svg>
+              <span>Indexed Catalog</span>
+            </div>
+            <div class="catalog-list">
+              <div class="catalog-item">
+                <span class="catalog-name">React 18 / 19</span>
+                <span class="catalog-stat badge-sage">2,748 chunks</span>
+              </div>
+              <div class="catalog-item">
+                <span class="catalog-name">FastAPI 0.115</span>
+                <span class="catalog-stat badge-amber">1,454 chunks</span>
+              </div>
+              <div class="catalog-item">
+                <span class="catalog-name">Next.js &amp; RSC</span>
+                <span class="catalog-stat badge-slate">KB + Web</span>
+              </div>
+              <div class="catalog-item">
+                <span class="catalog-name">PostgreSQL / Git</span>
+                <span class="catalog-stat badge-slate">Tavily Search</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Suggested Starter Queries Card -->
+          <div class="neo-card sidebar-card">
+            <div class="interrupt-tag">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+              </svg>
+              <span>Quick Workflows</span>
+            </div>
+            <div class="prompt-chips-container">
+              <button class="prompt-chip" data-query="What is the difference between useMemo and useCallback with code examples?">
+                useMemo vs useCallback
+              </button>
+              <button class="prompt-chip" data-query="How to define path parameters with numeric and string validation in FastAPI?">
+                FastAPI Path Validation
+              </button>
+              <button class="prompt-chip" data-query="What are Server Actions in Next.js and how do they function?">
+                Next.js Server Actions
+              </button>
+              <button class="prompt-chip" data-query="How to configure connection pooling with PgBouncer for PostgreSQL?">
+                PgBouncer Connection Pool
+              </button>
+              <button class="prompt-chip" data-query="How to restore a deleted local branch using git reflog?">
+                Git Branch Recovery
+              </button>
+            </div>
+          </div>
+
+          <!-- Architecture & Scoring Guide Card -->
+          <div class="neo-card sidebar-card">
+            <div class="interrupt-tag">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              <span>Scoring Guardrails</span>
+            </div>
+            <div class="scoring-rules">
+              <div class="rule-row">
+                <span class="rule-label">KB Direct Threshold:</span>
+                <span class="rule-val">&ge; 7 / 10</span>
+              </div>
+              <div class="rule-row">
+                <span class="rule-label">Web Fallback Threshold:</span>
+                <span class="rule-val">&ge; 6 / 10</span>
+              </div>
+              <div class="rule-row">
+                <span class="rule-label">Guardrail Scope:</span>
+                <span class="rule-val">Full-Stack Web Dev</span>
+              </div>
+              <div class="rule-row">
+                <span class="rule-label">Hallucination Check:</span>
+                <span class="rule-val">Zero-Tolerance</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Center Conversation Stream Area -->
+      <main class="chat-main" id="chat-main">
+        <div class="chat-thread" id="chat-thread">
+          <!-- Initial Welcome Assistant Card -->
+          <article class="thread-item assistant-item">
+            <div class="neo-card conversation-box assistant-box">
+              <div class="interrupt-tag tag-assistant">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                  <line x1="8" y1="21" x2="16" y2="21"></line>
+                  <line x1="12" y1="17" x2="12" y2="21"></line>
+                </svg>
+                <span>Enterprise Copilot</span>
+              </div>
+
+              <div class="message-content">
+                <p>Welcome to <strong>DEVCOPILOT</strong>. I am your internal engineering knowledge base assistant, connected directly to indexed DevDocs, vector similarity retrieval (Qdrant), and Tavily web research fallback.</p>
+                <div class="welcome-capabilities-grid">
+                  <div class="capability-item">
+                    <strong>Direct Semantic Retrieval</strong>
+                    <span>Deep technical docs for React, FastAPI, Python, and modern web architectures.</span>
+                  </div>
+                  <div class="capability-item">
+                    <strong>Deterministic Evaluation</strong>
+                    <span>Calculates cosine similarity and keyword overlap before deciding whether to answer directly.</span>
+                  </div>
+                  <div class="capability-item">
+                    <strong>Verified Citations</strong>
+                    <span>Every technical answer cites exact source URLs and documentation chunk IDs.</span>
+                  </div>
+                </div>
+                <p class="helper-note">Select any suggested workflow on the left or type your technical query into the dock below.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Floating Pill Input Dock (Reference Signature) -->
+        <div class="dock-container">
+          <form class="dock-form" id="chat-form">
+            <button type="button" class="dock-circle-btn" id="dock-action-btn" title="Inspect active filters">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </button>
+            <div class="dock-input-wrapper">
+              <input 
+                type="text" 
+                id="user-input" 
+                class="dock-input-field" 
+                placeholder="Ask technical question or trigger repo search..." 
+                autocomplete="off" 
+                required
+              >
+            </div>
+            <button type="submit" class="dock-send-btn" id="send-btn" aria-label="Submit query">
+              <span>Send</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>
+          </form>
+          <div class="dock-footer-meta">
+            <span class="footer-chip badge-slate">Domain: Full-Stack Web Development</span>
+            <span class="footer-chip badge-sage">Qdrant Cloud Active</span>
+            <span class="footer-chip badge-amber">Groq Accelerated</span>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
