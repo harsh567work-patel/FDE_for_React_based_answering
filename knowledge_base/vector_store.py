@@ -1,24 +1,24 @@
 import os
 from dotenv import load_dotenv
-from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_community.embeddings.fastembed import FastEmbedEmbeddings
 from langchain_qdrant import QdrantVectorStore
 from qdrant_client import QdrantClient
 from qdrant_client.models import VectorParams, Distance
 
 load_dotenv()
 
-# Embedding model (384-dimensional, fast and compact)
-EMBEDDING_MODEL_NAME = "all-MiniLM-L6-v2"
+# Embedding model (384-dimensional, fast and compact ONNX runtime < 200MB RAM)
+EMBEDDING_MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
 COLLECTION_NAME = "fullstack_devdocs"
 VECTOR_SIZE = 384
 
 _embeddings = None
 
 def get_embeddings():
-    """Singleton getter for HuggingFace embeddings."""
+    """Singleton getter for lightweight FastEmbed ONNX embeddings."""
     global _embeddings
     if _embeddings is None:
-        _embeddings = HuggingFaceEmbeddings(model_name=EMBEDDING_MODEL_NAME)
+        _embeddings = FastEmbedEmbeddings(model_name=EMBEDDING_MODEL_NAME)
     return _embeddings
 
 def get_qdrant_client() -> tuple[QdrantClient, str]:
